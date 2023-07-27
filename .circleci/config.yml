@@ -8,5 +8,5 @@ job:
 # Orchestrate our job run sequence
 workflows:
  run_test:
-   job:
+   jobs:
      - test
