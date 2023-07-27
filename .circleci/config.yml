@@ -7,6 +7,6 @@ job:
 
 # Orchestrate our job run sequence
 workflows:
- test:
+ run_test:
    job:
      - test
