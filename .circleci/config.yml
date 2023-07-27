@@ -6,7 +6,7 @@ job:
       - run: echo "this is the test job"
 
 # Orchestrate our job run sequence
-#workflows:
- #test:
-  #  job:
-     # - test
+workflows:
+ test:
+   job:
+     - test
