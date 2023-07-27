@@ -1,12 +1,12 @@
 version: 2.1
-jobs:
+job:
   test:
     steps:
       - checkout
       - run: echo "this is the test job"
 
 # Orchestrate our job run sequence
-workflows:
-  test:
-    jobs:
-      - test
+#workflows:
+ #test:
+  #  job:
+     # - test
