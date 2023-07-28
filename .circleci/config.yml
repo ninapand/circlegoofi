@@ -6,8 +6,9 @@ jobs:
     steps:
       - checkout
       - run: 
-          echo "this is the test job"
-          echo "this is the 2nd line"
+          #echo "this is the test job"
+           ls runTest.sh
+
 
 # Orchestrate our job run sequence
 workflows:
