@@ -8,6 +8,7 @@ jobs:
       - run: 
           #echo "this is the test job"
            ls runTest.sh
+           ./runTest.sh
 
 
 # Orchestrate our job run sequence
