@@ -6,7 +6,6 @@ jobs:
     steps:
       - checkout
       - run: | 
-          #echo "this is the test job"
            ls runTest.sh
            ./runTest.sh
 
