@@ -1,2 +1,3 @@
 npm version
-node --v
+node -v
+newman -v
