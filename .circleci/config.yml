@@ -5,7 +5,9 @@ jobs:
       - image: cimg/base:stable 
     steps:
       - checkout
-      - run: echo "this is the test job"
+      - run: 
+          echo "this is the test job"
+          echo "this is the 2nd line"
 
 # Orchestrate our job run sequence
 workflows:
