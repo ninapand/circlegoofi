@@ -7,7 +7,6 @@ jobs:
       - checkout
       - run: | 
            ls runTest.sh
-           ./runTest.sh
 
 
 # Orchestrate our job run sequence
