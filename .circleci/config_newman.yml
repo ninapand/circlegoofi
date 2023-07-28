@@ -1,0 +1,15 @@
+version: 2.1
+orbs:
+  newman: postman/newman@1.0.0
+jobs:
+  newman-collection-run:
+    executor:newman/postman-newman-docker
+    steps:
+      - checkout
+      - newman/newman-run:
+         collection: ./Swagger_Petstore_slacknotifi_final.postman_collection.json
+            
+workflows:
+  run_test:
+        jobs:
+          - newman-collection-run
