@@ -1,0 +1,733 @@
+{
+	"info": {
+		"_postman_id": "2a8a0926-3821-41bd-90a2-f7e0b7182f7b",
+		"name": "Swagger_Petstore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4496366",
+		"_collection_link": "https://red-meadow-4749.postman.co/workspace/Tech-Challenges~9db6ca60-2476-4aad-8180-ad9bed08029e/collection/4496366-2a8a0926-3821-41bd-90a2-f7e0b7182f7b?action=share&creator=4496366&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Store",
+			"item": [
+				{
+					"name": "Place an order for pet",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"g_id\",data.ORDER_ID);\r",
+									"pm.globals.set(\"g_petId\",data.PET_ID);\r",
+									"pm.globals.set(\"g_quantity\",data.QUANTITY);\r",
+									"pm.globals.set(\"g_status\",data.STATUS);\r",
+									"pm.globals.set(\"g_complete\",data.COMPLETE);\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"// data[\"ORDER_ID\"]\r",
+									"// pm.iterationData.get(\"ORDER_ID\")\r",
+									"\r",
+									"\r",
+									"/*pm.globals.set(\"g_id\",0);\r",
+									"pm.globals.set(\"g_petId\",0);\r",
+									"pm.globals.set(\"g_quantity\",1);\r",
+									"//pm.globals.set(\"g_shipDate\",\"2023-05-24T00:53:03.712Z\");\r",
+									"pm.globals.set(\"g_status\",\"placed\");\r",
+									"pm.globals.set(\"g_complete\",true);*/"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TC1:If pet is successfully ordered, test case is passed  \", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"TC2:If status is placed then return 200 OK\", function () {\r",
+									"    let testResult = false;\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    pm.globals.set(\"orderID_new\", jsonData.id);\r",
+									"    if (jsonData.status == \"placed\") {\r",
+									"        testResult= true;\r",
+									"    }\r",
+									"    pm.expect(testResult).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"TC3:If status is placed then quantity should be non zero\", function () {\r",
+									"    let testResult = false;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    if ((jsonData.status == \"placed\") && (jsonData.quantity != 0)) {\r",
+									"              testResult= true;\r",
+									"    }\r",
+									"    pm.expect(testResult).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{g_id}},\r\n  \"petId\": {{g_petId}},\r\n  \"quantity\":{{g_quantity}},\r\n  \"shipDate\": \"2023-04-24T00:53:03.712Z\",\r\n  \"status\": \"{{g_status}}\",\r\n  \"complete\": {{g_complete}}\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*{\r\n  \"id\": {{data.ORDER_ID}},\r\n  \"petId\": {{data.PET_ID}},\r\n  \"quantity\":{{data.QUANTITY}},\r\n  \"shipDate\": \"2023-05-24T00:53:03.712Z\",\r\n  \"status\": {{data.STATUS}},\r\n  \"complete\": {{data.COMPLETE}}\r\n}*/\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*pm.globals.set(\"g_id\",0);\r\npm.globals.set(\"g_petId\",0);\r\npm.globals.set(\"g_quantity\",1);\r\npm.globals.set(\"g_shipDate\",\"2023-05-24T00:53:03.712Z\");\r\npm.globals.set(\"g_status\",\"placed\");\r\npm.globals.set(\"g_complete\",true);*/\r\n"
+						},
+						"url": {
+							"raw": "{{host}}/v2/store/order",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"store",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find order by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TC1 Status code should be 200OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){",
+									"          console.log(\"Sleeping for 5 seconds before next request.\");",
+									"  }, 5000);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v2/store/order/{{orderID_new}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"store",
+								"order",
+								"{{orderID_new}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete order by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TC1 Status code should be 200OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v2/store/order/{{orderID_new}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"store",
+								"order",
+								"{{orderID_new}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "returns pet inventory by status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TC1 Status code should be 200OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"TC2: Return TC Pass if no of items with status sold is greater than or equal to 3\", function () {\r",
+									"//     let testResult = false;\r",
+									"//     var jsonData = pm.response.json();\r",
+									"//     console.log(jsonData.status);\r",
+									"//     if((jsonData.status == \"sold\") > 3) {\r",
+									"//         testResult = true\r",
+									"//     }\r",
+									"//     pm.expect(testResult).to.eql(true);\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v2/store/inventory",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"store",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "add a new pet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 9223372036854254001,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/v2/pet",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find pet by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}//v2/pet/9223372036854254001",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"",
+								"v2",
+								"pet",
+								"9223372036854254001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find pet by status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/v2/pet/findByStatus?status=available",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "available"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update an existing request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 9223372036854254001,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"teddy\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}//v2/pet",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"",
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updates pet with formData",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "name = \"teddy\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v2/pet/9223372036854254001",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"9223372036854254001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete pet",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v2/pet/9223372036854254001",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"9223372036854254001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create user list with array",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 0,\r\n    \"username\": \"samtheant\",\r\n    \"firstName\": \"sam\",\r\n    \"lastName\": \"ant\",\r\n    \"email\": \"samtheant@readingeggs.com\",\r\n    \"password\": \"string\",\r\n    \"phone\": \"0426427772\",\r\n    \"userStatus\": 1\r\n  },\r\n  {\r\n    \"id\": 1,\r\n    \"username\": \"NatTheKangaroo\",\r\n    \"firstName\": \"Nat\",\r\n    \"lastName\": \"Kang\",\r\n    \"email\": \"NatTheKangaroo@draonline.com\",\r\n    \"password\": \"string2\",\r\n    \"phone\": \"0426796059\",\r\n    \"userStatus\": 1\r\n  }\r\n\r\n]"
+						},
+						"url": {
+							"raw": "{{host}}/v2/user/createWithArray",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"user",
+								"createWithArray"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creat user list with List",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 0,\r\n    \"username\": \"string\",\r\n    \"firstName\": \"string\",\r\n    \"lastName\": \"string\",\r\n    \"email\": \"string\",\r\n    \"password\": \"string\",\r\n    \"phone\": \"string\",\r\n    \"userStatus\": 0\r\n  }\r\n]"
+						},
+						"url": {
+							"raw": "{{host}}/v2/user/createWithList",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"user",
+								"createWithList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find user by username",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v2/user/samtheant",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"user",
+								"samtheant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n  {\r\n    \"id\": 1,\r\n    \"username\": \"samtheant\",\r\n    \"firstName\": \"sam\",\r\n    \"lastName\": \"ant\",\r\n    \"email\": \"samieaunty@readingeggs.com\",\r\n    \"password\": \"string\",\r\n    \"phone\": \"0426427772\",\r\n    \"userStatus\": 1\r\n  }\r\n"
+						},
+						"url": {
+							"raw": "{{host}}/v2/user/samtheant",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"user",
+								"samtheant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by username",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v2/user/samtheant",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"user",
+								"samtheant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logs user into the system",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v2/user/login?username=sam&password=hiThere",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"user",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "sam"
+								},
+								{
+									"key": "password",
+									"value": "hiThere"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logs user out from the system",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/v2/user/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user Object",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"username\": \"string\",\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/v2/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v2",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"sending hello  (from cli)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hooks.slack.com/services/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",
+							"protocol": "https",
+							"host": [
+								"hooks",
+								"slack",
+								"com"
+							],
+							"path": [
+								"services",
+								"T01BTTJ53PU",
+								"B05HZA6NM4Y",
+								"EQa45zviz155VuGco1u9S8jm"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

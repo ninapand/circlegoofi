@@ -2,18 +2,14 @@ version: 2.1
 orbs:
   newman: postman/newman@1.2.3
 jobs:
-  test:
-    docker:
-      - image: cimg/base:stable 
+  newman-collection-run:
+    executor:newman/postman-newman-docker
     steps:
       - checkout
-      - run: | 
-           ls runTest.sh
-           chmod +x runTest.sh
-           ./runTest.sh
-
-# Orchestrate our job run sequence
+      - newman/newman-run:
+         collection: ./Swagger_Petstore_slacknotifi_final.postman_collection.json
+            
 workflows:
   run_test:
         jobs:
-          - test
+          - newman-collection-run
