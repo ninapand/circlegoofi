@@ -1,12 +1,14 @@
 version: 2.1
-job:
+jobs:
   test:
+    docker:
+      - image: cimg/base:stable 
     steps:
       - checkout
       - run: echo "this is the test job"
 
 # Orchestrate our job run sequence
 workflows:
- run_test:
-   jobs:
-     - test
+  run_test:
+        jobs:
+          - test
