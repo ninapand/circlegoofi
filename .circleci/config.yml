@@ -1,3 +1,18 @@
 version: 2.1
-orbs:
-  newman: postman/newman@0.0.2
+jobs:
+  test:
+    docker:
+      - image: cimg/base:stable 
+    steps:
+      - checkout
+      - run: | 
+           sudo npm install -g newman
+           ls runTest.sh
+           chmod +x runTest.sh
+           ./runTest.sh
+
+# Orchestrate our job run sequence
+workflows:
+  run_test:
+        jobs:
+          - test

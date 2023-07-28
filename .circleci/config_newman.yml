@@ -3,10 +3,13 @@ orbs:
   newman: postman/newman@1.0.0
 jobs:
   newman-collection-run:
+    docker:
+      -image: cimg/node:14.16.0
     executor:newman/postman-newman-docker
     steps:
       - checkout
       - newman/newman-run:
+         sudo npm install -g newman
          collection: ./Swagger_Petstore_slacknotifi_final.postman_collection.json
             
 workflows:
