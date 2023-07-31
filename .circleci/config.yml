@@ -9,7 +9,7 @@ jobs:
           ls runTest.sh
           node --version
           npm -v
-          npm install -g newman
+          sudo npm install -g newman
           chmod +x runTest.sh
           ./runTest.sh
 
