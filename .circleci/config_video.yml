@@ -2,13 +2,14 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: cimg/node:20.5.0
+      - image: cimg/base:stable 
     steps:
       - checkout
-      - run: |
+      - run: | 
+           sudo npm install -g newman
            ls runTest.sh
-          node --version
-          npm -v
+           chmod +x runTest.sh
+           ./runTest.sh
 
 # Orchestrate our job run sequence
 workflows:
