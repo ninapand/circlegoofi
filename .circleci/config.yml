@@ -9,6 +9,8 @@ jobs:
           ls runTest.sh
           node --version
           npm -v
+          chmod +x runTest.sh
+          ./runTest.sh
 
 # Orchestrate our job run sequence
 workflows:
