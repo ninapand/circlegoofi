@@ -5,8 +5,8 @@ jobs:
       - image: cimg/node:20.5.0
     steps:
       - checkout
-      - run : |
-           ls runTest.sh
+      - run: |
+          ls runTest.sh
           node --version
           npm -v
 
