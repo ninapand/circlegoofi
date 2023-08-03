@@ -10,6 +10,8 @@ jobs:
           node --version
           npm -v
           sudo npm install -g newman
+          npm install -g newman-reporter-html
+          npm install -g newman-reporter-htmlextra.
           chmod +x runTest.sh
           ./runTest.sh
 
