@@ -15,6 +15,10 @@ jobs:
           chmod +x runTest.sh
           ./runTest.sh
           ls newman/*
+      - store_artifacts:
+          path: newman
+          destination: newman_result.html
+      
 
 # Orchestrate our job run sequence
 workflows:
